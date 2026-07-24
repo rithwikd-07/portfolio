@@ -1355,4 +1355,18 @@ body {
     .footer-right {
         align-items: flex-start;
     }
+    
+    .hero-title {
+        font-size: clamp(2.25rem, 10vw, 3.75rem);
+        margin-bottom: 1.5rem;
+    }
+    
+    .terminal-body {
+        padding: 1.25rem 1.5rem;
+        font-size: 0.75rem;
+    }
+    
+    .terminal-output {
+        white-space: pre-wrap;
+    }
 }
