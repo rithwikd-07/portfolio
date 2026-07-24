@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
     /* ==========================================
        4. INTERACTIVE CARD SPOTLIGHTS
        ========================================== */
-    const spotlightCards = document.querySelectorAll('.project-grid-card, .skill-card, .stat-card');
+    const spotlightCards = document.querySelectorAll('.project-grid-card, .skill-card, .stat-card, .cert-carousel-card, .cert-grid-card, .victory-card');
 
     spotlightCards.forEach(card => {
         card.addEventListener('mousemove', (e) => {
@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
        5. SCROLL REVEAL & SKILLS PROGRESS OBSERVER
        ========================================== */
     const revealElements = document.querySelectorAll(
-        '.section-title, .section-subtitle, .stat-card, .skill-card, .timeline-item, .project-grid-card, .accolades-list li, .certs-list li, .about-left, .about-right'
+        '.section-title, .section-subtitle, .stat-card, .skill-card, .timeline-item, .project-grid-card, .cert-carousel-card, .cert-grid-card, .victory-card, .about-left, .about-right'
     );
 
     // Initial styling to setup animation values
@@ -157,15 +157,22 @@ document.addEventListener('DOMContentLoaded', () => {
         window.addEventListener('resize', resizeCanvas);
         resizeCanvas();
 
-        window.addEventListener('mousemove', (e) => {
-            mouse.x = e.clientX;
-            mouse.y = e.clientY;
-        });
+            const radialGlow = document.querySelector('.radial-glow');
+            window.addEventListener('mousemove', (e) => {
+                mouse.x = e.clientX;
+                mouse.y = e.clientY;
+                if (radialGlow) {
+                    radialGlow.style.background = `radial-gradient(1000px circle at ${e.clientX}px ${e.clientY}px, rgba(99, 102, 241, 0.08), transparent 75%)`;
+                }
+            });
 
-        window.addEventListener('mouseleave', () => {
-            mouse.x = null;
-            mouse.y = null;
-        });
+            window.addEventListener('mouseleave', () => {
+                mouse.x = null;
+                mouse.y = null;
+                if (radialGlow) {
+                    radialGlow.style.background = `radial-gradient(1000px circle at 50% 50%, rgba(99, 102, 241, 0.04), transparent 80%)`;
+                }
+            });
 
         // Trigger radar ring on click
         window.addEventListener('click', (e) => {
@@ -287,6 +294,25 @@ document.addEventListener('DOMContentLoaded', () => {
                         ctx.stroke();
                     }
                 }
+            }
+
+            // Connect mouse to nearby nodes
+            if (mouse.x !== null && mouse.y !== null) {
+                particles.forEach(p => {
+                    const dx = p.x - mouse.x;
+                    const dy = p.y - mouse.y;
+                    const dist = Math.hypot(dx, dy);
+
+                    if (dist < 165) {
+                        const alpha = ((165 - dist) / 165) * 0.25;
+                        ctx.beginPath();
+                        ctx.moveTo(p.x, p.y);
+                        ctx.lineTo(mouse.x, mouse.y);
+                        ctx.strokeStyle = `rgba(99, 102, 241, ${alpha})`;
+                        ctx.lineWidth = 0.6;
+                        ctx.stroke();
+                    }
+                });
             }
 
             // Draw expanding click rings (radar pings)
