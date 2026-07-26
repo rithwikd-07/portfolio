@@ -6,57 +6,58 @@ document.addEventListener('DOMContentLoaded', () => {
     const decryptTextEl = document.getElementById('decrypt-text');
     const loaderEl = document.getElementById('loader');
     
-    const finalText = "WELCOME";
-    const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&*()_-+=";
-    let iterations = 0;
-    let interval = null;
+    if (decryptTextEl && loaderEl) {
+        const finalText = "WELCOME";
+        const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&*()_-+=";
+        let iterations = 0;
+        let interval = null;
 
-    function startDecryptAnimation() {
-        clearInterval(interval);
-        interval = setInterval(() => {
-            decryptTextEl.innerText = finalText
-                .split("")
-                .map((char, index) => {
-                    if (index < iterations) {
-                        return finalText[index];
-                    }
-                    return chars[Math.floor(Math.random() * chars.length)];
-                })
-                .join("");
+        function startDecryptAnimation() {
+            clearInterval(interval);
+            interval = setInterval(() => {
+                decryptTextEl.innerText = finalText
+                    .split("")
+                    .map((char, index) => {
+                        if (index < iterations) {
+                            return finalText[index];
+                        }
+                        return chars[Math.floor(Math.random() * chars.length)];
+                    })
+                    .join("");
 
-            if (iterations >= finalText.length) {
-                clearInterval(interval);
-                // Complete loading and fade out loader
-                setTimeout(() => {
-                    loaderEl.style.opacity = '0';
-                    loaderEl.style.visibility = 'hidden';
-                    document.body.style.overflowY = 'auto';
-                }, 600);
-            }
-            iterations += 1/3; // Speed of character decryption
-        }, 30);
+                if (iterations >= finalText.length) {
+                    clearInterval(interval);
+                    setTimeout(() => {
+                        loaderEl.style.opacity = '0';
+                        loaderEl.style.visibility = 'hidden';
+                        document.body.style.overflowY = 'auto';
+                    }, 500);
+                }
+                iterations += 1/3;
+            }, 30);
+        }
+
+        document.body.style.overflowY = 'hidden';
+        setTimeout(startDecryptAnimation, 200);
     }
-
-    // Freeze scroll during loading
-    document.body.style.overflowY = 'hidden';
-    // Start decryption animation
-    setTimeout(startDecryptAnimation, 200);
 
 
     /* ==========================================
-       2. CURSOR RADIAL GLOW TRACKING
+       2. CURSOR RADIAL GLOW & POSITION
        ========================================== */
     const radialGlow = document.querySelector('.radial-glow');
 
-    document.addEventListener('mousemove', (e) => {
-        radialGlow.style.opacity = '1';
-        radialGlow.style.left = `${e.clientX}px`;
-        radialGlow.style.top = `${e.clientY}px`;
-    });
+    if (radialGlow) {
+        document.addEventListener('mousemove', (e) => {
+            radialGlow.style.opacity = '1';
+            radialGlow.style.left = `${e.clientX}px`;
+            radialGlow.style.top = `${e.clientY}px`;
+        });
 
-    document.addEventListener('mouseleave', () => {
-        radialGlow.style.opacity = '0';
-    });
+        document.addEventListener('mouseleave', () => {
+            radialGlow.style.opacity = '0';
+        });
+    }
 
 
     /* ==========================================
@@ -65,33 +66,33 @@ document.addEventListener('DOMContentLoaded', () => {
     const menuBtn = document.getElementById('menu-btn');
     const navLinksMenu = document.getElementById('nav-links-menu');
 
-    menuBtn.addEventListener('click', () => {
-        menuBtn.classList.toggle('active');
-        navLinksMenu.classList.toggle('active');
-    });
-
-    // Close menu when clicking on nav link
-    const navLinks = navLinksMenu.querySelectorAll('a');
-    navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            menuBtn.classList.remove('active');
-            navLinksMenu.classList.remove('active');
+    if (menuBtn && navLinksMenu) {
+        menuBtn.addEventListener('click', () => {
+            menuBtn.classList.toggle('active');
+            navLinksMenu.classList.toggle('active');
         });
-    });
+
+        const navLinks = navLinksMenu.querySelectorAll('a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menuBtn.classList.remove('active');
+                navLinksMenu.classList.remove('active');
+            });
+        });
+    }
 
 
     /* ==========================================
        4. INTERACTIVE CARD SPOTLIGHTS
        ========================================== */
-    const spotlightCards = document.querySelectorAll('.project-grid-card, .skill-card, .stat-card, .cert-carousel-card, .cert-grid-card, .victory-card');
+    const spotlightCards = document.querySelectorAll('.project-grid-card, .skill-card, .stat-card, .cert-carousel-card, .cert-grid-card, .victory-card, .edu-card, .connect-card-container, .connect-btn-pill');
 
     spotlightCards.forEach(card => {
         card.addEventListener('mousemove', (e) => {
             const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left; // x position within element
-            const y = e.clientY - rect.top;  // y position within element
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
             
-            // Set variables to define spotlight center
             card.style.setProperty('--mouse-x', `${x}px`);
             card.style.setProperty('--mouse-y', `${y}px`);
         });
@@ -102,10 +103,10 @@ document.addEventListener('DOMContentLoaded', () => {
        5. SCROLL REVEAL & SKILLS PROGRESS OBSERVER
        ========================================== */
     const revealElements = document.querySelectorAll(
-        '.section-title, .section-subtitle, .stat-card, .skill-card, .timeline-item, .project-grid-card, .cert-carousel-card, .cert-grid-card, .victory-card, .about-left, .about-right'
+        '.section-title, .section-subtitle, .stat-card, .skill-card, .timeline-item, .project-grid-card, .cert-carousel-card, .cert-grid-card, .victory-card, .about-left, .about-right, .edu-card, .scroll-reveal'
     );
 
-    // Initial styling to setup animation values
+    // Initial styles setup
     revealElements.forEach(el => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(30px)';
@@ -118,7 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 entry.target.style.opacity = '1';
                 entry.target.style.transform = 'translateY(0)';
                 
-                // Trigger skills animation if the intersected node is a skill-card
+                // Animate skill card bars
                 if (entry.target.classList.contains('skill-card')) {
                     const progressBars = entry.target.querySelectorAll('.skill-progress-fill');
                     progressBars.forEach(bar => {
@@ -140,15 +141,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /* ==========================================
-       6. DYNAMIC TELEMETRY CANVAS NET & RIPPLES
+       6. DYNAMIC TELEMETRY CANVAS SYSTEM
        ========================================== */
     const canvas = document.getElementById('telemetry-canvas');
     if (canvas) {
         const ctx = canvas.getContext('2d');
         let particles = [];
-        let dataPackets = [];
-        let pings = [];
-        let mouse = { x: null, y: null, radius: 120 };
+        let mouse = { x: null, y: null, radius: 150 };
 
         function resizeCanvas() {
             canvas.width = window.innerWidth;
@@ -157,47 +156,29 @@ document.addEventListener('DOMContentLoaded', () => {
         window.addEventListener('resize', resizeCanvas);
         resizeCanvas();
 
-            const radialGlow = document.querySelector('.radial-glow');
-            window.addEventListener('mousemove', (e) => {
-                mouse.x = e.clientX;
-                mouse.y = e.clientY;
-                if (radialGlow) {
-                    radialGlow.style.background = `radial-gradient(1000px circle at ${e.clientX}px ${e.clientY}px, rgba(99, 102, 241, 0.08), transparent 75%)`;
-                }
-            });
+        window.addEventListener('mousemove', (e) => {
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
+        });
 
-            window.addEventListener('mouseleave', () => {
-                mouse.x = null;
-                mouse.y = null;
-                if (radialGlow) {
-                    radialGlow.style.background = `radial-gradient(1000px circle at 50% 50%, rgba(99, 102, 241, 0.04), transparent 80%)`;
-                }
-            });
-
-        // Trigger radar ring on click
-        window.addEventListener('click', (e) => {
-            pings.push({
-                x: e.clientX,
-                y: e.clientY,
-                radius: 5,
-                maxRadius: 160,
-                alpha: 0.35
-            });
+        window.addEventListener('mouseleave', () => {
+            mouse.x = null;
+            mouse.y = null;
         });
 
         class Particle {
             constructor() {
                 this.x = Math.random() * canvas.width;
                 this.y = Math.random() * canvas.height;
-                this.vx = (Math.random() - 0.5) * 0.4;
-                this.vy = (Math.random() - 0.5) * 0.4;
-                this.radius = Math.random() * 1.5 + 0.5;
+                this.vx = (Math.random() - 0.5) * 0.3;
+                this.vy = (Math.random() - 0.5) * 0.3;
+                this.radius = Math.random() * 1.2 + 0.6;
             }
 
             draw() {
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-                ctx.fillStyle = 'rgba(99, 102, 241, 0.35)';
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.05)';
                 ctx.fill();
             }
 
@@ -205,14 +186,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (this.x < 0 || this.x > canvas.width) this.vx = -this.vx;
                 if (this.y < 0 || this.y > canvas.height) this.vy = -this.vy;
 
+                // Mouse interaction repulsion
                 if (mouse.x !== null && mouse.y !== null) {
                     const dx = this.x - mouse.x;
                     const dy = this.y - mouse.y;
                     const dist = Math.hypot(dx, dy);
                     if (dist < mouse.radius) {
                         const force = (mouse.radius - dist) / mouse.radius;
-                        this.x += (dx / dist) * force * 1.5;
-                        this.y += (dy / dist) * force * 1.5;
+                        this.x += (dx / dist) * force * 1.2;
+                        this.y += (dy / dist) * force * 1.2;
                     }
                 }
 
@@ -221,115 +203,37 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        const hexChars = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'];
-        class DataPacket {
-            constructor() {
-                this.reset();
-                this.y = Math.random() * canvas.height;
-            }
-
-            reset() {
-                this.x = Math.random() * canvas.width;
-                this.y = canvas.height + 20;
-                this.vy = -(Math.random() * 0.25 + 0.15); // drift upward
-                this.alpha = Math.random() * 0.18 + 0.04;
-                this.val = '0x' + Array.from({length: 2}, () => hexChars[Math.floor(Math.random() * hexChars.length)]).join('');
-                this.fontSize = Math.floor(Math.random() * 4) + 8;
-            }
-
-            draw() {
-                ctx.font = `${this.fontSize}px monospace`;
-                ctx.fillStyle = `rgba(14, 165, 233, ${this.alpha})`;
-                ctx.fillText(this.val, this.x, this.y);
-            }
-
-            update() {
-                this.y += this.vy;
-                if (this.y < -20) {
-                    this.reset();
-                }
-            }
-        }
-
-        // Initialize elements
-        const particleCount = Math.min(Math.floor(window.innerWidth / 15), 90);
+        const particleCount = Math.min(Math.floor(window.innerWidth / 20), 70);
         for (let i = 0; i < particleCount; i++) {
             particles.push(new Particle());
-        }
-
-        const packetCount = Math.min(Math.floor(window.innerWidth / 40), 20);
-        for (let i = 0; i < packetCount; i++) {
-            dataPackets.push(new DataPacket());
         }
 
         function animate() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             
-            // Draw hex data packets drifting upwards
-            dataPackets.forEach(p => {
-                p.update();
-                p.draw();
-            });
-
-            // Draw connecting mesh nodes
             particles.forEach(p => {
                 p.update();
                 p.draw();
             });
 
-            // Connect nearby nodes
+            // Connect lines
             for (let i = 0; i < particles.length; i++) {
                 for (let j = i + 1; j < particles.length; j++) {
                     const dx = particles[i].x - particles[j].x;
                     const dy = particles[i].y - particles[j].y;
                     const dist = Math.hypot(dx, dy);
 
-                    if (dist < 110) {
-                        const alpha = ((110 - dist) / 110) * 0.12;
+                    if (dist < 130) {
+                        const alpha = ((130 - dist) / 130) * 0.035;
                         ctx.beginPath();
                         ctx.moveTo(particles[i].x, particles[i].y);
                         ctx.lineTo(particles[j].x, particles[j].y);
-                        ctx.strokeStyle = `rgba(99, 102, 241, ${alpha})`;
+                        ctx.strokeStyle = `rgba(255, 255, 255, ${alpha})`;
                         ctx.lineWidth = 0.5;
                         ctx.stroke();
                     }
                 }
             }
-
-            // Connect mouse to nearby nodes
-            if (mouse.x !== null && mouse.y !== null) {
-                particles.forEach(p => {
-                    const dx = p.x - mouse.x;
-                    const dy = p.y - mouse.y;
-                    const dist = Math.hypot(dx, dy);
-
-                    if (dist < 165) {
-                        const alpha = ((165 - dist) / 165) * 0.25;
-                        ctx.beginPath();
-                        ctx.moveTo(p.x, p.y);
-                        ctx.lineTo(mouse.x, mouse.y);
-                        ctx.strokeStyle = `rgba(99, 102, 241, ${alpha})`;
-                        ctx.lineWidth = 0.6;
-                        ctx.stroke();
-                    }
-                });
-            }
-
-            // Draw expanding click rings (radar pings)
-            pings.forEach((p, idx) => {
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-                ctx.strokeStyle = `rgba(14, 165, 233, ${p.alpha})`;
-                ctx.lineWidth = 0.75;
-                ctx.stroke();
-
-                p.radius += 1.8;
-                p.alpha -= 0.005;
-
-                if (p.alpha <= 0 || p.radius >= p.maxRadius) {
-                    pings.splice(idx, 1);
-                }
-            });
 
             requestAnimationFrame(animate);
         }
@@ -338,7 +242,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /* ==========================================
-       7. HERO TERMINAL INTERACTIVE STATS
+       7. HERO TERMINAL STATS LOOP
        ========================================== */
     const uptimeVal = document.getElementById('uptime-val');
     const pingVal = document.getElementById('ping-val');
@@ -355,10 +259,129 @@ document.addEventListener('DOMContentLoaded', () => {
         setInterval(() => {
             const randomPing = Math.floor(Math.random() * 15) + 4;
             pingVal.innerText = `${randomPing}ms`;
-        }, 3500);
+        }, 3000);
     }
 
 
+    /* ==========================================
+       8. DYNAMIC MODAL LIGHTBOX FOR CREDENTIALS
+       ========================================== */
+    // Programmatically construct the Lightbox elements to avoid modifying HTML structure
+    const lightbox = document.createElement('div');
+    lightbox.className = 'lightbox-modal';
+    lightbox.id = 'lightbox-modal';
 
+    const lightboxContent = document.createElement('div');
+    lightboxContent.className = 'lightbox-content-wrapper';
+
+    const closeBtn = document.createElement('button');
+    closeBtn.className = 'lightbox-close-btn';
+    closeBtn.id = 'lightbox-close';
+    closeBtn.innerHTML = `
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        Close
+    `;
+
+    const lightboxImg = document.createElement('img');
+    lightboxImg.className = 'lightbox-img';
+    lightboxImg.id = 'lightbox-img';
+    lightboxImg.alt = 'Credential Zoom';
+
+    const lightboxCaption = document.createElement('p');
+    lightboxCaption.className = 'lightbox-caption';
+    lightboxCaption.id = 'lightbox-caption';
+
+    lightboxContent.appendChild(closeBtn);
+    lightboxContent.appendChild(lightboxImg);
+    lightboxContent.appendChild(lightboxCaption);
+    lightbox.appendChild(lightboxContent);
+    document.body.appendChild(lightbox);
+
+    // Click handler for modal triggers
+    const triggerCards = document.querySelectorAll('.victory-card, .cert-carousel-card, .cert-grid-card');
+
+    triggerCards.forEach(card => {
+        card.addEventListener('click', () => {
+            const img = card.querySelector('img');
+            if (img) {
+                const src = img.getAttribute('src');
+                const alt = img.getAttribute('alt');
+                
+                // Get caption from titles inside
+                let captionText = alt;
+                const captionEl = card.querySelector('.victory-photo-title, .cert-card-title, .cert-title-new');
+                if (captionEl) {
+                    captionText = captionEl.innerText;
+                }
+
+                lightboxImg.setAttribute('src', src);
+                lightboxCaption.innerText = captionText;
+                
+                lightbox.classList.add('active');
+                document.body.style.overflowY = 'hidden';
+            }
+        });
+    });
+
+    function closeLightbox() {
+        lightbox.classList.remove('active');
+        document.body.style.overflowY = 'auto';
+        setTimeout(() => {
+            lightboxImg.setAttribute('src', '');
+            lightboxCaption.innerText = '';
+        }, 400);
+    }
+
+    closeBtn.addEventListener('click', closeLightbox);
+    
+    lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox || e.target.classList.contains('lightbox-content-wrapper')) {
+            closeLightbox();
+        }
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+            closeLightbox();
+        }
+    });
+
+
+    /* ==========================================
+       9. ACTIVE NAVIGATION SCROLLSPY
+       ========================================== */
+    const navItems = document.querySelectorAll('.nav-links a');
+    const pageSections = document.querySelectorAll('section');
+
+    function updateActiveNav() {
+        let currentSectionId = '';
+        
+        pageSections.forEach(sec => {
+            const secTop = sec.offsetTop;
+            if (window.scrollY >= secTop - 350) {
+                currentSectionId = sec.getAttribute('id');
+            }
+        });
+
+        navItems.forEach(item => {
+            item.classList.remove('active');
+            if (item.getAttribute('href') === `#${currentSectionId}`) {
+                item.classList.add('active');
+            }
+        });
+    }
+
+    window.addEventListener('scroll', updateActiveNav);
+    updateActiveNav();
+
+
+
+    /* ==========================================
+       11. AMBIENT CURSOR GLOW COORDINATES
+       ========================================== */
+    document.addEventListener('mousemove', (e) => {
+        document.documentElement.style.setProperty('--mouse-x', `${e.clientX}px`);
+        document.documentElement.style.setProperty('--mouse-y', `${e.clientY}px`);
+    });
 
 });
