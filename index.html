@@ -1,36 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dokku Rithwik | Portfolio</title>
-    
+
     <!-- SEO Meta Tags -->
-    <meta name="description" content="Portfolio of Dokku Rithwik - B.Tech Computer Science & Engineering (Data Science) student at CMRCET, 1st Place Winner at CodeStorm 2K26, IoT Security & Data Analytics Enthusiast.">
-    <meta name="keywords" content="Dokku Rithwik, Rithwik Dokku, CMRCET, Data Science, Portfolio, IoT Security, AuthSphere, SecureNodeX, Safeon, Smart Charger, Arogya Drishti">
+    <meta name="description"
+        content="Portfolio of Dokku Rithwik - B.Tech Computer Science & Engineering (Data Science) student at CMRCET, 1st Place Winner at CodeStorm 2K26, IoT Security & Data Analytics Enthusiast.">
+    <meta name="keywords"
+        content="Dokku Rithwik, Rithwik Dokku, CMRCET, Data Science, Portfolio, IoT Security, AuthSphere, SecureNodeX, Safeon, Smart Charger, Arogya Drishti">
     <meta name="author" content="Dokku Rithwik">
-    
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://rithwikdokku.github.io/">
     <meta property="og:title" content="Dokku Rithwik | Portfolio">
-    <meta property="og:description" content="Explore the engineering projects, hackathon achievements, and technical capabilities of Dokku Rithwik.">
+    <meta property="og:description"
+        content="Explore the engineering projects, hackathon achievements, and technical capabilities of Dokku Rithwik.">
     <meta property="og:image" content="profile.jpg">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:title" content="Dokku Rithwik | Portfolio">
-    <meta property="twitter:description" content="Explore the engineering projects, hackathon achievements, and technical capabilities of Dokku Rithwik.">
+    <meta property="twitter:description"
+        content="Explore the engineering projects, hackathon achievements, and technical capabilities of Dokku Rithwik.">
     <meta property="twitter:image" content="profile.jpg">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@300;400;500;600;700&family=Syncopate:wght@700&family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@300;400;500;600;700&family=Syncopate:wght@700&family=Bebas+Neue&display=swap"
+        rel="stylesheet">
 
     <!-- Style Sheet -->
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
 
     <!-- Ambient Cursor Glow -->
@@ -42,10 +50,26 @@
     <div class="noise-overlay"></div>
     <div class="radial-glow"></div>
 
+    <!-- Ambient Aurora Background Blobs -->
+    <div class="aurora-container">
+        <div class="aurora-blob aurora-blob-1"></div>
+        <div class="aurora-blob aurora-blob-2"></div>
+        <div class="aurora-blob aurora-blob-3"></div>
+    </div>
+
+    <!-- Custom Cursor Elements -->
+    <div class="cursor-dot" id="cursor-dot"></div>
+    <div class="cursor-ring" id="cursor-ring"></div>
+
     <!-- Page Loader -->
     <div id="loader" class="loader-container">
         <div class="loader-content">
+            <div class="loader-glow"></div>
             <div class="loader-text" id="decrypt-text">WELCOME</div>
+            <div class="loader-progress-track">
+                <div class="loader-progress-fill" id="loader-progress-fill"></div>
+            </div>
+            <div class="loader-percent" id="loader-percent">00%</div>
         </div>
     </div>
 
@@ -71,18 +95,130 @@
 
     <!-- Main Content Wrapper -->
     <main id="main-content">
-        
+
         <!-- Hero Section -->
         <section id="hero" class="hero-section">
             <div class="hero-container">
+
+                <!-- Corner System Readouts -->
+                <div class="hero-corner-stats">
+                    <span class="corner-stat-left">SECURITY-ORIENTED DATA SCIENCE ENGINEER</span>
+                    <span class="corner-stat-right">CGPA: <strong>7.7</strong> &nbsp;/&nbsp; PROJECTS:
+                        <strong>4</strong> &nbsp;/&nbsp; VISITORS: <strong id="visitor-count">—</strong></span>
+                </div>
+
                 <div class="hero-dashboard-wrapper">
                     <div class="hero-left-col">
-                        <p class="hero-intro">A SECURITY-ORIENTED DATA SCIENCE ENGINEER</p>
-                        <h1 class="hero-title">DOKKU RITHWIK</h1>
-                        <p class="hero-tagline">Building secure software, intelligent IoT systems, and AI-powered solutions that solve real-world problems.</p>
-                        
-                        <!-- Stats Grid -->
-                        <div class="stats-grid">
+                        <h1 class="hero-title">DOKKU<br>RITHWIK</h1>
+                        <p class="hero-tagline">Building secure software, intelligent IoT systems, and AI-powered
+                            solutions that solve real-world problems.</p>
+
+                        <div class="hero-cta-row">
+                            <a href="resume.pdf" download="Dokku_Rithwik_Resume.pdf" class="resume-btn">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                                    <polyline points="14 2 14 8 20 8" />
+                                    <line x1="12" y1="18" x2="12" y2="12" />
+                                    <polyline points="9 15 12 18 15 15" />
+                                </svg>
+                                <span>Download Resume</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="hero-right-col">
+                        <div class="terminal-mockup terminal-mockup-compact">
+                            <div class="terminal-header">
+                                <div class="terminal-dots">
+                                    <span class="dot-red"></span>
+                                    <span class="dot-yellow"></span>
+                                    <span class="dot-green"></span>
+                                </div>
+                                <span class="terminal-title">RITHWIK@CMRCET:~</span>
+                            </div>
+                            <div class="terminal-body">
+                                <div class="terminal-line"><span class="t-prompt">$</span> cat telemetry_status.json
+                                </div>
+                                <div class="terminal-output">{
+                                    <span class="t-key">"node"</span>: <span class="t-str">"DOKKU_RITHWIK"</span>,
+                                    <span class="t-key">"status"</span>: <span class="t-str">"ACTIVE // ONLINE"</span>,
+                                    <span class="t-key">"telemetry"</span>: {
+                                    <span class="t-key">"core"</span>: <span class="t-str">"Data Science &
+                                        Security"</span>,
+                                    <span class="t-key">"uptime"</span>: <span class="t-val"
+                                        id="uptime-val">3478</span>,
+                                    <span class="t-key">"ping"</span>: <span class="t-val" id="ping-val">12ms</span>
+                                    },
+                                    <span class="t-key">"interfaces"</span>: [<span class="t-str">"IoT"</span>, <span
+                                        class="t-str">"AI"</span>, <span class="t-str">"Web"</span>]
+                                    }
+                                </div>
+                                <div class="terminal-line"><span class="t-prompt">$</span> <span
+                                        class="t-cursor">█</span></div>
+                            </div>
+                        </div>
+
+                        <div class="hero-mini-stats">
+                            <div class="mini-stat">
+                                <span class="mini-stat-number">5+</span>
+                                <span class="mini-stat-label">HACKATHONS</span>
+                            </div>
+                            <div class="mini-stat">
+                                <span class="mini-stat-number">1st</span>
+                                <span class="mini-stat-label">CODESTORM</span>
+                            </div>
+                            <div class="mini-stat">
+                                <span class="mini-stat-number">4</span>
+                                <span class="mini-stat-label">PROJECTS</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Scrolling Marquee Ticker -->
+                <div class="marquee-container">
+                    <div class="marquee-content">
+                        <span>DATA SCIENCE</span> ✦ <span>IOT SECURITY</span> ✦ <span>1ST PLACE @ CODESTORM'26</span> ✦
+                        <span>5+ HACKATHONS</span> ✦ <span>AUTHSPHERE</span> ✦ <span>CMRCET</span> ✦ <span>OPEN
+                            SOURCE</span> ✦ <span>DEVELOPER</span> ✦
+                        <span>DATA SCIENCE</span> ✦ <span>IOT SECURITY</span> ✦ <span>1ST PLACE @ CODESTORM'26</span> ✦
+                        <span>5+ HACKATHONS</span> ✦ <span>AUTHSPHERE</span> ✦ <span>CMRCET</span> ✦ <span>OPEN
+                            SOURCE</span> ✦ <span>DEVELOPER</span> ✦
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about-section">
+            <div class="section-container">
+                <h2 class="section-title">The Profile</h2>
+                <span class="section-subtitle">identity & vision</span>
+
+                <div class="about-grid">
+                    <div class="about-left">
+                        <div class="profile-image-container">
+                            <img src="profile.jpg" alt="Dokku Rithwik" class="profile-image">
+                            <div class="image-border"></div>
+                        </div>
+                    </div>
+                    <div class="about-right">
+                        <div class="bio-text-large">
+                            <p>I am Dokku Rithwik and currently a Computer Science student with specialization in Data
+                                Science who has the desire to develop software to solve real-life problems using various
+                                tools such as secure IoT, AI systems, and the latest web-based systems.</p>
+                            <p>From a hobby of discovering how different technologies function to developing secure,
+                                intelligent, and impact-bearing systems has been the growth of my desire to learn how to
+                                use engineering skills and discover new technologies in every project developed by me.
+                            </p>
+                            <p>Apart from programming, I have always been eager to learn new things, experiment and
+                                challenge myself to become a better software engineer. The best technology is not only
+                                innovative but also secure and practical.</p>
+                        </div>
+
+                        <!-- Stats Grid (moved from hero) -->
+                        <div class="stats-grid about-stats-grid">
                             <div class="stat-card">
                                 <span class="stat-number">5+</span>
                                 <span class="stat-label">HACKATHONS PARTICIPATED</span>
@@ -95,65 +231,6 @@
                                 <span class="stat-number">4</span>
                                 <span class="stat-label">ENGINEERING PROJECTS</span>
                             </div>
-                        </div>
-                    </div>
-                    
-                    <div class="hero-right-col">
-                        <div class="terminal-mockup">
-                            <div class="terminal-header">
-                                <div class="terminal-dots">
-                                    <span class="dot-red"></span>
-                                    <span class="dot-yellow"></span>
-                                    <span class="dot-green"></span>
-                                </div>
-                                <span class="terminal-title">RITHWIK@CMRCET:~</span>
-                            </div>
-                            <div class="terminal-body">
-                                <div class="terminal-line"><span class="t-prompt">$</span> cat telemetry_status.json</div>
-                                <div class="terminal-output">{
-  <span class="t-key">"node"</span>: <span class="t-str">"DOKKU_RITHWIK"</span>,
-  <span class="t-key">"status"</span>: <span class="t-str">"ACTIVE // ONLINE"</span>,
-  <span class="t-key">"telemetry"</span>: {
-    <span class="t-key">"core"</span>: <span class="t-str">"Data Science & Security"</span>,
-    <span class="t-key">"uptime"</span>: <span class="t-val" id="uptime-val">3478</span>,
-    <span class="t-key">"ping"</span>: <span class="t-val" id="ping-val">12ms</span>
-  },
-  <span class="t-key">"interfaces"</span>: [<span class="t-str">"IoT"</span>, <span class="t-str">"AI"</span>, <span class="t-str">"Web"</span>]
-}</div>
-                                <div class="terminal-line"><span class="t-prompt">$</span> <span class="t-cursor">█</span></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Scrolling Marquee Ticker -->
-                <div class="marquee-container">
-                    <div class="marquee-content">
-                        <span>DATA SCIENCE</span> ✦ <span>IOT SECURITY</span> ✦ <span>1ST PLACE @ CODESTORM'26</span> ✦ <span>5+ HACKATHONS</span> ✦ <span>AUTHSPHERE</span> ✦ <span>CMRCET</span> ✦ <span>OPEN SOURCE</span> ✦ <span>DEVELOPER</span> ✦
-                        <span>DATA SCIENCE</span> ✦ <span>IOT SECURITY</span> ✦ <span>1ST PLACE @ CODESTORM'26</span> ✦ <span>5+ HACKATHONS</span> ✦ <span>AUTHSPHERE</span> ✦ <span>CMRCET</span> ✦ <span>OPEN SOURCE</span> ✦ <span>DEVELOPER</span> ✦
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- About Section -->
-        <section id="about" class="about-section">
-            <div class="section-container">
-                <h2 class="section-title">The Profile</h2>
-                <span class="section-subtitle">identity & vision</span>
-                
-                <div class="about-grid">
-                    <div class="about-left">
-                        <div class="profile-image-container">
-                            <img src="profile.jpg" alt="Dokku Rithwik" class="profile-image">
-                            <div class="image-border"></div>
-                        </div>
-                    </div>
-                    <div class="about-right">
-                        <div class="bio-text-large">
-                            <p>I am Dokku Rithwik and currently a Computer Science student with specialization in Data Science who has the desire to develop software to solve real-life problems using various tools such as secure IoT, AI systems, and the latest web-based systems.</p>
-                            <p>From a hobby of discovering how different technologies function to developing secure, intelligent, and impact-bearing systems has been the growth of my desire to learn how to use engineering skills and discover new technologies in every project developed by me.</p>
-                            <p>Apart from programming, I have always been eager to learn new things, experiment and challenge myself to become a better software engineer. The best technology is not only innovative but also secure and practical.</p>
                         </div>
                     </div>
                 </div>
@@ -174,46 +251,26 @@
                             <li>
                                 <div class="skill-info-row">
                                     <span class="skill-name">C</span>
-                                    <span class="skill-percentage">90%</span>
-                                </div>
-                                <div class="skill-progress-bar">
-                                    <div class="skill-progress-fill" style="width: 0%;" data-level="90%"></div>
                                 </div>
                             </li>
                             <li>
                                 <div class="skill-info-row">
                                     <span class="skill-name">Python</span>
-                                    <span class="skill-percentage">85%</span>
-                                </div>
-                                <div class="skill-progress-bar">
-                                    <div class="skill-progress-fill" style="width: 0%;" data-level="85%"></div>
                                 </div>
                             </li>
                             <li>
                                 <div class="skill-info-row">
                                     <span class="skill-name">Java</span>
-                                    <span class="skill-percentage">75%</span>
-                                </div>
-                                <div class="skill-progress-bar">
-                                    <div class="skill-progress-fill" style="width: 0%;" data-level="75%"></div>
                                 </div>
                             </li>
                             <li>
                                 <div class="skill-info-row">
                                     <span class="skill-name">SQL</span>
-                                    <span class="skill-percentage">80%</span>
-                                </div>
-                                <div class="skill-progress-bar">
-                                    <div class="skill-progress-fill" style="width: 0%;" data-level="80%"></div>
                                 </div>
                             </li>
                             <li>
                                 <div class="skill-info-row">
                                     <span class="skill-name">HTML5 & CSS3</span>
-                                    <span class="skill-percentage">85%</span>
-                                </div>
-                                <div class="skill-progress-bar">
-                                    <div class="skill-progress-fill" style="width: 0%;" data-level="85%"></div>
                                 </div>
                             </li>
                         </ul>
@@ -226,37 +283,21 @@
                             <li>
                                 <div class="skill-info-row">
                                     <span class="skill-name">Data Analytics & ML</span>
-                                    <span class="skill-percentage">80%</span>
-                                </div>
-                                <div class="skill-progress-bar">
-                                    <div class="skill-progress-fill" style="width: 0%;" data-level="80%"></div>
                                 </div>
                             </li>
                             <li>
                                 <div class="skill-info-row">
                                     <span class="skill-name">Tableau Visualizations</span>
-                                    <span class="skill-percentage">75%</span>
-                                </div>
-                                <div class="skill-progress-bar">
-                                    <div class="skill-progress-fill" style="width: 0%;" data-level="75%"></div>
                                 </div>
                             </li>
                             <li>
                                 <div class="skill-info-row">
                                     <span class="skill-name">MySQL Database</span>
-                                    <span class="skill-percentage">80%</span>
-                                </div>
-                                <div class="skill-progress-bar">
-                                    <div class="skill-progress-fill" style="width: 0%;" data-level="80%"></div>
                                 </div>
                             </li>
                             <li>
                                 <div class="skill-info-row">
                                     <span class="skill-name">Node.js</span>
-                                    <span class="skill-percentage">70%</span>
-                                </div>
-                                <div class="skill-progress-bar">
-                                    <div class="skill-progress-fill" style="width: 0%;" data-level="70%"></div>
                                 </div>
                             </li>
                         </ul>
@@ -269,46 +310,26 @@
                             <li>
                                 <div class="skill-info-row">
                                     <span class="skill-name">IoT Node Security</span>
-                                    <span class="skill-percentage">80%</span>
-                                </div>
-                                <div class="skill-progress-bar">
-                                    <div class="skill-progress-fill" style="width: 0%;" data-level="80%"></div>
                                 </div>
                             </li>
                             <li>
                                 <div class="skill-info-row">
                                     <span class="skill-name">ESP32 & ESP32-S3</span>
-                                    <span class="skill-percentage">85%</span>
-                                </div>
-                                <div class="skill-progress-bar">
-                                    <div class="skill-progress-fill" style="width: 0%;" data-level="85%"></div>
                                 </div>
                             </li>
                             <li>
                                 <div class="skill-info-row">
                                     <span class="skill-name">Arduino IDE</span>
-                                    <span class="skill-percentage">85%</span>
-                                </div>
-                                <div class="skill-progress-bar">
-                                    <div class="skill-progress-fill" style="width: 0%;" data-level="85%"></div>
                                 </div>
                             </li>
                             <li>
                                 <div class="skill-info-row">
                                     <span class="skill-name">Low-Level Design (LLD)</span>
-                                    <span class="skill-percentage">70%</span>
-                                </div>
-                                <div class="skill-progress-bar">
-                                    <div class="skill-progress-fill" style="width: 0%;" data-level="70%"></div>
                                 </div>
                             </li>
                             <li>
                                 <div class="skill-info-row">
                                     <span class="skill-name">Relay Modules & Sensors</span>
-                                    <span class="skill-percentage">80%</span>
-                                </div>
-                                <div class="skill-progress-bar">
-                                    <div class="skill-progress-fill" style="width: 0%;" data-level="80%"></div>
                                 </div>
                             </li>
                         </ul>
@@ -391,10 +412,13 @@
                             <span class="p-card-num">01 // SECURITY</span>
                             <h3 class="p-card-title">AuthSphere</h3>
                         </div>
-                        <p class="p-card-summary">A patented certificate-driven security framework (formerly SecureNodeX) for IoT authentication and management.</p>
+                        <p class="p-card-summary">A patented certificate-driven security framework (formerly
+                            SecureNodeX) for IoT authentication and management.</p>
                         <ul class="p-card-bullets">
-                            <li>Securing resource-constrained IoT deployments using certificate-based authentication.</li>
-                            <li>Automated onboarding enabling devices to securely join networks without configuration.</li>
+                            <li>Securing resource-constrained IoT deployments using certificate-based authentication.
+                            </li>
+                            <li>Automated onboarding enabling devices to securely join networks without configuration.
+                            </li>
                             <li>Built as an independent platform reducing vendor lock-in.</li>
                         </ul>
                         <div class="p-card-tags">
@@ -416,10 +440,12 @@
                             <span class="p-card-num">02 // WEARABLE</span>
                             <h3 class="p-card-title">SAFEON</h3>
                         </div>
-                        <p class="p-card-summary">A wearable IoT safety device that captures emergency images and shares live location instantly with trusted contacts.</p>
+                        <p class="p-card-summary">A wearable IoT safety device that captures emergency images and shares
+                            live location instantly with trusted contacts.</p>
                         <ul class="p-card-bullets">
                             <li>Developed a compact ESP32-S3 based smart locket for emergency response and safety.</li>
-                            <li>Captures real-time images and transmits them along with live GPS location upon SOS press.</li>
+                            <li>Captures real-time images and transmits them along with live GPS location upon SOS
+                                press.</li>
                             <li>Operates independently without requiring continuous smartphone connection.</li>
                         </ul>
                         <div class="p-card-tags">
@@ -441,9 +467,11 @@
                             <span class="p-card-num">03 // POWER</span>
                             <h3 class="p-card-title">Smart Charger</h3>
                         </div>
-                        <p class="p-card-summary">An intelligent charging system that optimizes battery health through automated charging control and power management.</p>
+                        <p class="p-card-summary">An intelligent charging system that optimizes battery health through
+                            automated charging control and power management.</p>
                         <ul class="p-card-bullets">
-                            <li>Microcontroller-based charging preventing overcharging via real-time battery monitoring.</li>
+                            <li>Microcontroller-based charging preventing overcharging via real-time battery monitoring.
+                            </li>
                             <li>Automated power control with voltage and current sensing for safer charging cycles.</li>
                             <li>Supports smart scheduling, renewable energy, and remote monitoring.</li>
                         </ul>
@@ -466,15 +494,18 @@
                             <span class="p-card-num">04 // HEALTHCARE</span>
                             <h3 class="p-card-title">Arogya Drishti</h3>
                         </div>
-                        <p class="p-card-summary">A system for securely managing hospital operations and patient data with a focus on IoT security.</p>
+                        <p class="p-card-summary">A system for securely managing hospital operations and patient data
+                            with a focus on IoT security.</p>
                         <ul class="p-card-bullets">
                             <li>Designed a system for securely managing hospital operations and patient data.</li>
-                            <li>Focused on protecting sensitive healthcare information and securing smart hospital devices.</li>
+                            <li>Focused on protecting sensitive healthcare information and securing smart hospital
+                                devices.</li>
                         </ul>
                         <div class="p-card-tags">
-                            <span class="p-card-tag">HEALTHCARE</span>
-                            <span class="p-card-tag">SECURITY</span>
-                            <span class="p-card-tag">MANAGEMENT</span>
+                            <span class="p-card-tag">Java</span>
+                            <span class="p-card-tag">MySQL</span>
+                            <span class="p-card-tag">Database Mgmt</span>
+                            <span class="p-card-tag">Security</span>
                         </div>
                     </div>
                 </div>
@@ -486,35 +517,37 @@
             <div class="section-container">
                 <h2 class="section-title text-center">Achievements</h2>
                 <span class="section-subtitle text-center">competitive legacy & accolades</span>
-                
+
                 <!-- Sub-Block 1: The Championship -->
                 <div class="achievements-block">
                     <h3 class="achievements-block-title">The Championship</h3>
                     <span class="achievements-block-subtitle">1st place // codestorm 2k26 national hackathon</span>
-                    
+
                     <div class="victory-grid">
                         <!-- Photo 1 -->
                         <div class="victory-card">
                             <div class="victory-img-wrapper">
-                                <img src="codestorm_stage.jpg" alt="Receiving CodeStorm 2K26 Award on Stage" class="victory-img">
+                                <img src="codestorm_stage.jpg" alt="Receiving CodeStorm 2K26 Award on Stage"
+                                    class="victory-img">
                             </div>
                             <div class="victory-caption">
                                 <span class="victory-tag">STAGE PRESENTATION</span>
                                 <h4 class="victory-photo-title">Receiving the 1st Place Award</h4>
                             </div>
                         </div>
-                        
+
                         <!-- Photo 2 -->
                         <div class="victory-card">
                             <div class="victory-img-wrapper">
-                                <img src="codestorm_cert_closeup.jpg" alt="CodeStorm 2K26 Certificate of Merit" class="victory-img">
+                                <img src="codestorm_cert_closeup.jpg" alt="CodeStorm 2K26 Certificate of Merit"
+                                    class="victory-img">
                             </div>
                             <div class="victory-caption">
                                 <span class="victory-tag">VALIDATION</span>
                                 <h4 class="victory-photo-title">Certificate of Merit</h4>
                             </div>
                         </div>
-                        
+
                         <!-- Photo 3 -->
                         <div class="victory-card">
                             <div class="victory-img-wrapper">
@@ -527,18 +560,20 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Sub-Block 2: Competitive History -->
-                <div class="achievements-block" style="margin-top: 6rem; border-top: 1px solid var(--border-color); padding-top: 5rem;">
+                <div class="achievements-block"
+                    style="margin-top: 6rem; border-top: 1px solid var(--border-color); padding-top: 5rem;">
                     <h3 class="achievements-block-title">Competitive History</h3>
                     <span class="achievements-block-subtitle">5+ Hackathons</span>
-                    
+
                     <div class="cert-carousel-container">
                         <div class="cert-carousel-track">
                             <!-- Card 1 -->
                             <div class="cert-carousel-card">
                                 <div class="cert-image-wrapper">
-                                    <img src="hackathon winner certificate.jpeg" alt="CodeStorm 2K26" class="cert-carousel-img">
+                                    <img src="hackathon winner certificate.jpeg" alt="CodeStorm 2K26"
+                                        class="cert-carousel-img">
                                 </div>
                                 <div class="cert-card-info">
                                     <span class="cert-card-badge">1ST PLACE</span>
@@ -546,7 +581,7 @@
                                     <p class="cert-card-issuer">NRCM College (Project Secure Node X / AuthSphere)</p>
                                 </div>
                             </div>
-                            
+
                             <!-- Card 2 -->
                             <div class="cert-carousel-card">
                                 <div class="cert-image-wrapper">
@@ -567,14 +602,16 @@
                                 <div class="cert-card-info">
                                     <span class="cert-card-badge">PARTICIPANT</span>
                                     <h4 class="cert-card-title">Code: Automata Ver 2.1</h4>
-                                    <p class="cert-card-issuer">Chhatrapati Shivaji Maharaj Inst. of Tech (Team CodeCommit)</p>
+                                    <p class="cert-card-issuer">Chhatrapati Shivaji Maharaj Inst. of Tech (Team
+                                        CodeCommit)</p>
                                 </div>
                             </div>
 
                             <!-- Card 4 -->
                             <div class="cert-carousel-card">
                                 <div class="cert-image-wrapper">
-                                    <img src="DOKKU RITHWIK_CyberFest2026_Certificate.png" alt="Cyber Fest 2026" class="cert-carousel-img">
+                                    <img src="DOKKU RITHWIK_CyberFest2026_Certificate.png" alt="Cyber Fest 2026"
+                                        class="cert-carousel-img">
                                 </div>
                                 <div class="cert-card-info">
                                     <span class="cert-card-badge">PARTICIPANT</span>
@@ -605,12 +642,14 @@
             <div class="section-container">
                 <h2 class="section-title text-center">Validations</h2>
                 <span class="section-subtitle text-center">certified courses</span>
-                
+
                 <div class="certifications-grid-layout">
                     <!-- Certificate 1 -->
                     <div class="cert-grid-card">
                         <div class="cert-grid-img-wrapper">
-                            <img src="deloitte_cert.png" alt="Deloitte Australia Data Analytics Job Simulation Certificate" class="cert-grid-img">
+                            <img src="deloitte_cert.png"
+                                alt="Deloitte Australia Data Analytics Job Simulation Certificate"
+                                class="cert-grid-img">
                         </div>
                         <div class="cert-grid-info">
                             <div class="cert-grid-meta">
@@ -621,11 +660,12 @@
                             <p class="cert-authority-new">Deloitte Australia // Forage</p>
                         </div>
                     </div>
-                    
+
                     <!-- Certificate 2 -->
                     <div class="cert-grid-card">
                         <div class="cert-grid-img-wrapper">
-                            <img src="cisco_data_science_cert.png" alt="Cisco Introduction to Data Science Certificate" class="cert-grid-img">
+                            <img src="cisco_data_science_cert.png" alt="Cisco Introduction to Data Science Certificate"
+                                class="cert-grid-img">
                         </div>
                         <div class="cert-grid-info">
                             <div class="cert-grid-meta">
@@ -648,29 +688,48 @@
                     <h2 class="connect-title">Let's <span class="italic">· Connect</span></h2>
                     <span class="connect-subtitle">GET IN TOUCH</span>
                 </div>
-                
+
                 <!-- Connect Content Card -->
                 <div class="connect-card-container">
-                    
+
                     <div class="connect-social-middle-grid">
                         <a href="https://github.com/rithwikd-lang" target="_blank" class="connect-btn-pill">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path
+                                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+                            </svg>
                             <span>GitHub</span>
                         </a>
                         <a href="https://www.linkedin.com/in/rithwik07/" target="_blank" class="connect-btn-pill">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path
+                                    d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                                <rect x="2" y="9" width="4" height="12" />
+                                <circle cx="4" cy="4" r="2" />
+                            </svg>
                             <span>LinkedIn</span>
                         </a>
                         <a href="https://www.instagram.com/rithwikkk.07/" target="_blank" class="connect-btn-pill">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                            </svg>
                             <span>Instagram</span>
                         </a>
                         <a href="mailto:rithwikd0033@gmail.com" class="connect-btn-pill">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                                <polyline points="22,6 12,13 2,6" />
+                            </svg>
                             <span>Email</span>
                         </a>
                     </div>
-                    
+
                     <div class="connect-card-footer">
                         <span>POWERED BY DOKKU RITHWIK</span>
                     </div>
@@ -692,4 +751,5 @@
     <!-- Script File -->
     <script src="script.js?v=welcome-update"></script>
 </body>
+
 </html>

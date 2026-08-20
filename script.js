@@ -5,7 +5,9 @@ document.addEventListener('DOMContentLoaded', () => {
        ========================================== */
     const decryptTextEl = document.getElementById('decrypt-text');
     const loaderEl = document.getElementById('loader');
-    
+    const loaderProgressFill = document.getElementById('loader-progress-fill');
+    const loaderPercentEl = document.getElementById('loader-percent');
+
     if (decryptTextEl && loaderEl) {
         const finalText = "WELCOME";
         const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&*()_-+=";
@@ -25,15 +27,21 @@ document.addEventListener('DOMContentLoaded', () => {
                     })
                     .join("");
 
+                const progressPct = Math.min(100, Math.round((iterations / finalText.length) * 100));
+                if (loaderProgressFill) loaderProgressFill.style.width = `${progressPct}%`;
+                if (loaderPercentEl) loaderPercentEl.innerText = `${String(progressPct).padStart(2, '0')}%`;
+
                 if (iterations >= finalText.length) {
                     clearInterval(interval);
+                    if (loaderProgressFill) loaderProgressFill.style.width = '100%';
+                    if (loaderPercentEl) loaderPercentEl.innerText = '100%';
                     setTimeout(() => {
                         loaderEl.style.opacity = '0';
                         loaderEl.style.visibility = 'hidden';
                         document.body.style.overflowY = 'auto';
                     }, 500);
                 }
-                iterations += 1/3;
+                iterations += 1 / 3;
             }, 30);
         }
 
@@ -92,7 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const rect = card.getBoundingClientRect();
             const x = e.clientX - rect.left;
             const y = e.clientY - rect.top;
-            
+
             card.style.setProperty('--mouse-x', `${x}px`);
             card.style.setProperty('--mouse-y', `${y}px`);
         });
@@ -118,7 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (entry.isIntersecting) {
                 entry.target.style.opacity = '1';
                 entry.target.style.transform = 'translateY(0)';
-                
+
                 // Animate skill card bars
                 if (entry.target.classList.contains('skill-card')) {
                     const progressBars = entry.target.querySelectorAll('.skill-progress-fill');
@@ -126,7 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         bar.style.width = bar.getAttribute('data-level');
                     });
                 }
-                
+
                 observer.unobserve(entry.target);
             }
         });
@@ -178,7 +186,7 @@ document.addEventListener('DOMContentLoaded', () => {
             draw() {
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-                ctx.fillStyle = 'rgba(255, 255, 255, 0.05)';
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.035)';
                 ctx.fill();
             }
 
@@ -210,7 +218,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         function animate() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
+
             particles.forEach(p => {
                 p.update();
                 p.draw();
@@ -224,7 +232,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const dist = Math.hypot(dx, dy);
 
                     if (dist < 130) {
-                        const alpha = ((130 - dist) / 130) * 0.035;
+                        const alpha = ((130 - dist) / 130) * 0.025;
                         ctx.beginPath();
                         ctx.moveTo(particles[i].x, particles[i].y);
                         ctx.lineTo(particles[j].x, particles[j].y);
@@ -306,7 +314,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (img) {
                 const src = img.getAttribute('src');
                 const alt = img.getAttribute('alt');
-                
+
                 // Get caption from titles inside
                 let captionText = alt;
                 const captionEl = card.querySelector('.victory-photo-title, .cert-card-title, .cert-title-new');
@@ -316,7 +324,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 lightboxImg.setAttribute('src', src);
                 lightboxCaption.innerText = captionText;
-                
+
                 lightbox.classList.add('active');
                 document.body.style.overflowY = 'hidden';
             }
@@ -333,7 +341,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     closeBtn.addEventListener('click', closeLightbox);
-    
+
     lightbox.addEventListener('click', (e) => {
         if (e.target === lightbox || e.target.classList.contains('lightbox-content-wrapper')) {
             closeLightbox();
@@ -355,7 +363,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function updateActiveNav() {
         let currentSectionId = '';
-        
+
         pageSections.forEach(sec => {
             const secTop = sec.offsetTop;
             if (window.scrollY >= secTop - 350) {
@@ -383,5 +391,106 @@ document.addEventListener('DOMContentLoaded', () => {
         document.documentElement.style.setProperty('--mouse-x', `${e.clientX}px`);
         document.documentElement.style.setProperty('--mouse-y', `${e.clientY}px`);
     });
+
+
+    /* ==========================================
+       12. CUSTOM CURSOR (DOT + LAGGING RING)
+       ========================================== */
+    const cursorDot = document.getElementById('cursor-dot');
+    const cursorRing = document.getElementById('cursor-ring');
+
+    if (cursorDot && cursorRing && window.matchMedia('(pointer: fine)').matches) {
+        let mouseX = 0, mouseY = 0;
+        let ringX = 0, ringY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            cursorDot.style.left = `${mouseX}px`;
+            cursorDot.style.top = `${mouseY}px`;
+        });
+
+        function animateRing() {
+            // Lerp toward the mouse position for a smooth trailing effect
+            ringX += (mouseX - ringX) * 0.18;
+            ringY += (mouseY - ringY) * 0.18;
+            cursorRing.style.left = `${ringX}px`;
+            cursorRing.style.top = `${ringY}px`;
+            requestAnimationFrame(animateRing);
+        }
+        animateRing();
+
+        const hoverTargets = 'a, button, .resume-btn, .connect-btn-pill, .project-grid-card, .skill-card, .skill-list li, .cert-carousel-card, .cert-grid-card, .victory-card, .mini-stat, .stat-card, .edu-card';
+
+        document.addEventListener('mouseover', (e) => {
+            if (e.target.closest(hoverTargets)) {
+                cursorRing.classList.add('cursor-hover');
+            }
+        });
+
+        document.addEventListener('mouseout', (e) => {
+            if (e.target.closest(hoverTargets)) {
+                cursorRing.classList.remove('cursor-hover');
+            }
+        });
+
+        document.addEventListener('mouseleave', () => {
+            cursorDot.style.opacity = '0';
+            cursorRing.style.opacity = '0';
+        });
+
+        document.addEventListener('mouseenter', () => {
+            cursorDot.style.opacity = '1';
+            cursorRing.style.opacity = '1';
+        });
+    } else if (cursorDot && cursorRing) {
+        // Touch devices: hide the custom cursor entirely
+        cursorDot.style.display = 'none';
+        cursorRing.style.display = 'none';
+    }
+
+
+    /* ==========================================
+       13. VISITOR COUNTER
+       ========================================== */
+    const visitorCountEl = document.getElementById('visitor-count');
+
+    if (visitorCountEl) {
+        // Uses CounterAPI (free, no signup) to persist a visit count across all visitors.
+        // "up" increments by 1 and returns the new total every time this page loads.
+        fetch('https://api.counterapi.dev/v1/rithwik-portfolio/hero-visits/up')
+            .then(res => res.json())
+            .then(data => {
+                if (data && typeof data.count !== 'undefined') {
+                    visitorCountEl.innerText = data.count;
+                }
+            })
+            .catch(() => {
+                // Fail silently if the counter service is unreachable —
+                // leave the placeholder dash rather than breaking the page.
+                visitorCountEl.innerText = '—';
+            });
+    }
+
+
+    /* ==========================================
+       14. MAGNETIC BUTTON EFFECT
+       ========================================== */
+    if (window.matchMedia('(pointer: fine)').matches) {
+        const magneticEls = document.querySelectorAll('.resume-btn, .connect-btn-pill');
+
+        magneticEls.forEach(el => {
+            el.addEventListener('mousemove', (e) => {
+                const rect = el.getBoundingClientRect();
+                const relX = e.clientX - (rect.left + rect.width / 2);
+                const relY = e.clientY - (rect.top + rect.height / 2);
+                el.style.transform = `translate(${relX * 0.3}px, ${relY * 0.3}px) scale(1.04)`;
+            });
+
+            el.addEventListener('mouseleave', () => {
+                el.style.transform = 'translate(0, 0) scale(1)';
+            });
+        });
+    }
 
 });
